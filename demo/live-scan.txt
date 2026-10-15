@@ -1,0 +1,35 @@
+# Genuine BeforeReport CLI run against synthetic repository examples
+# Start UTC: 2026-10-15T21:56:51.398274+00:00
+# End UTC: 2026-10-15T21:56:55.974384+00:00
+# Duration: 4.58 seconds
+$ python before_report.py scan --history examples/history.csv --draft examples/draft.json --url http://127.0.0.1:18761/v1/chat/completions --model gemma3
+# Exit code: 3 (3 means review needed)
+# stdout follows unchanged
+{
+  "draft_id": "DRAFT-101",
+  "verdict": "review_needed",
+  "compared": 2,
+  "history_size": 3,
+  "skipped_program_cases": 1,
+  "possible_program_aliases": [],
+  "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+  "comparisons": [
+    {
+      "prior_id": "CASE-014",
+      "prior_status": "reported closed as duplicate",
+      "decision": "related",
+      "draft_quote": "The thumbnail endpoint checks the signature and expiry but does not check whether the share remains active.",
+      "prior_quote": "Revocation removes the database share row, but the preview handler trusts a signed token without checking the current share state.",
+      "model_explanation_unverified": "Both reports describe the same vulnerability: a missing check for active shares after revocation. The thumbnail endpoint and preview handler both rely on signed URLs without verifying if the share is still valid, leading to continued access."
+    },
+    {
+      "prior_id": "CASE-021",
+      "prior_status": "closed no vulnerability",
+      "decision": "distinct",
+      "draft_quote": "The thumbnail endpoint checks the signature and expiry but does not check whether the share remains active.",
+      "prior_quote": "No injection was demonstrated; the export uses HTML encoding at the sink.",
+      "model_explanation_unverified": "The reports address different vulnerabilities. One involves a share URL remaining accessible after revocation (active check missing), while the other focuses on HTML escaping preventing markup injection. They relate to the same program but have distinct mechanisms and root causes."
+    }
+  ]
+}
+# stderr follows unchanged

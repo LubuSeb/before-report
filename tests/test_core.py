@@ -1,8 +1,11 @@
 import unittest
 from unittest.mock import patch
 from pathlib import Path
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from threading import Thread
+from urllib.error import HTTPError
 
-from before_report import ScanError, ground, read_history, scan, validate_case, validate_history, validate_url
+from before_report import ScanError, ground, model_compare, read_history, scan, validate_case, validate_history, validate_url
 
 
 DRAFT = {
@@ -71,6 +74,44 @@ class CoreTests(unittest.TestCase):
         ):
             with self.subTest(endpoint=endpoint), self.assertRaises(ScanError):
                 validate_url(endpoint)
+
+    def test_local_server_redirect_is_not_followed(self):
+        hits = []
+
+        class Destination(BaseHTTPRequestHandler):
+            def do_GET(self):
+                hits.append("followed")
+                self.send_response(200)
+                self.end_headers()
+
+            def log_message(self, *_args):
+                pass
+
+        destination = ThreadingHTTPServer(("127.0.0.1", 0), Destination)
+
+        class Redirect(BaseHTTPRequestHandler):
+            def do_POST(self):
+                self.send_response(302)
+                self.send_header("Location", f"http://127.0.0.1:{destination.server_port}/v1/chat/completions")
+                self.end_headers()
+
+            def log_message(self, *_args):
+                pass
+
+        source = ThreadingHTTPServer(("127.0.0.1", 0), Redirect)
+        threads = [Thread(target=server.serve_forever, daemon=True) for server in (source, destination)]
+        for thread in threads:
+            thread.start()
+        try:
+            with self.assertRaises(HTTPError):
+                model_compare(f"http://127.0.0.1:{source.server_port}/v1/chat/completions", "mock", self.draft, self.prior)
+            self.assertEqual(hits, [])
+        finally:
+            for server in (source, destination):
+                server.shutdown()
+                server.server_close()
+            for thread in threads:
+                thread.join(timeout=2)
 
     def test_program_alias_cannot_greenlight_zero_comparisons(self):
         aliased = dict(self.draft, program="Totally Different Program")

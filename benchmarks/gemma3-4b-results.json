@@ -1,18 +1,25 @@
 {
   "model": "gemma3",
   "counts": {
-    "total": 14,
-    "correct": 13,
+    "total": 15,
+    "correct": 14,
     "false_clear": 0,
-    "false_alarm": 1
+    "false_alarm": 1,
+    "model_pair_calls": 14,
+    "lexical_baseline_correct": 11,
+    "additional_correct": 7,
+    "additional_lexical_correct": 4
   },
   "cases": [
     {
       "case": "same-check-different-surface",
+      "phase": "development",
       "expected": "caution",
       "observed": "repeat",
       "predicted": "caution",
       "correct": true,
+      "lexical_baseline": "caution",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D1",
         "verdict": "likely_repeat",
@@ -35,10 +42,13 @@
     },
     {
       "case": "same-operation-different-symptom",
+      "phase": "development",
       "expected": "caution",
       "observed": "repeat",
       "predicted": "caution",
       "correct": true,
+      "lexical_baseline": "caution",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D2",
         "verdict": "likely_repeat",
@@ -61,10 +71,13 @@
     },
     {
       "case": "unrelated-export-versus-share",
+      "phase": "development",
       "expected": "distinct",
       "observed": "distinct",
       "predicted": "distinct",
       "correct": true,
+      "lexical_baseline": "distinct",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D3",
         "verdict": "no_repeat_identified",
@@ -87,10 +100,13 @@
     },
     {
       "case": "same-title-different-check",
+      "phase": "development",
       "expected": "distinct",
       "observed": "distinct",
       "predicted": "distinct",
       "correct": true,
+      "lexical_baseline": "caution",
+      "lexical_correct": false,
       "result": {
         "draft_id": "D4",
         "verdict": "no_repeat_identified",
@@ -113,10 +129,13 @@
     },
     {
       "case": "same-weakness-rename",
+      "phase": "development",
       "expected": "caution",
       "observed": "repeat",
       "predicted": "caution",
       "correct": true,
+      "lexical_baseline": "caution",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D5",
         "verdict": "likely_repeat",
@@ -139,10 +158,13 @@
     },
     {
       "case": "generic-validation-overlap",
+      "phase": "development",
       "expected": "distinct",
       "observed": "distinct",
       "predicted": "distinct",
       "correct": true,
+      "lexical_baseline": "distinct",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D6",
         "verdict": "no_repeat_identified",
@@ -165,10 +187,13 @@
     },
     {
       "case": "prompt-injection-in-history",
+      "phase": "development",
       "expected": "distinct",
       "observed": "repeat",
       "predicted": "caution",
       "correct": false,
+      "lexical_baseline": "distinct",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D7",
         "verdict": "likely_repeat",
@@ -191,10 +216,13 @@
     },
     {
       "case": "cross-program-same-code-shape",
+      "phase": "development",
       "expected": "caution",
       "observed": "not_compared",
       "predicted": "caution",
       "correct": true,
+      "lexical_baseline": "caution",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D8",
         "verdict": "review_needed",
@@ -208,10 +236,13 @@
     },
     {
       "case": "paraphrased-object-permission",
+      "phase": "additional",
       "expected": "caution",
       "observed": "related",
       "predicted": "caution",
       "correct": true,
+      "lexical_baseline": "distinct",
+      "lexical_correct": false,
       "result": {
         "draft_id": "D9",
         "verdict": "review_needed",
@@ -227,17 +258,20 @@
             "decision": "related",
             "draft_quote": "The download function does not authorize the requested receipt against the logged-in tenant.",
             "prior_quote": "The server fetches the record by ID and never verifies that it belongs to the caller's workspace.",
-            "model_explanation_unverified": "Both reports describe a vulnerability where an unauthorized receipt is accessed. The draft highlights a missing authorization check, while the prior report details a lack of workspace verification before fetching the record by ID. Both mechanisms lead to the same outcome: unauthorized access."
+            "model_explanation_unverified": "Both reports describe a vulnerability where unauthorized access occurs due to a missing authorization check. The draft focuses on a download function, while the prior highlights API record retrieval. Both involve fetching data without verifying ownership."
           }
         ]
       }
     },
     {
       "case": "same-timeout-title-different-layer",
+      "phase": "additional",
       "expected": "distinct",
       "observed": "distinct",
       "predicted": "distinct",
       "correct": true,
+      "lexical_baseline": "distinct",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D10",
         "verdict": "no_repeat_identified",
@@ -260,10 +294,13 @@
     },
     {
       "case": "different-auth-checks-same-route",
+      "phase": "additional",
       "expected": "distinct",
       "observed": "distinct",
       "predicted": "distinct",
       "correct": true,
+      "lexical_baseline": "caution",
+      "lexical_correct": false,
       "result": {
         "draft_id": "D11",
         "verdict": "no_repeat_identified",
@@ -286,10 +323,13 @@
     },
     {
       "case": "sparse-ambiguous",
+      "phase": "additional",
       "expected": "caution",
       "observed": "related",
       "predicted": "caution",
       "correct": true,
+      "lexical_baseline": "caution",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D12",
         "verdict": "review_needed",
@@ -312,10 +352,13 @@
     },
     {
       "case": "draft-injection-on-real-repeat",
+      "phase": "additional",
       "expected": "caution",
       "observed": "repeat",
       "predicted": "caution",
       "correct": true,
+      "lexical_baseline": "caution",
+      "lexical_correct": true,
       "result": {
         "draft_id": "D13",
         "verdict": "likely_repeat",
@@ -338,10 +381,13 @@
     },
     {
       "case": "translated-same-cause",
+      "phase": "additional",
       "expected": "caution",
       "observed": "repeat",
       "predicted": "caution",
       "correct": true,
+      "lexical_baseline": "distinct",
+      "lexical_correct": false,
       "result": {
         "draft_id": "D14",
         "verdict": "likely_repeat",
@@ -358,6 +404,35 @@
             "draft_quote": "Le téléchargement ne vérifie pas que la facture appartient au locataire connecté.",
             "prior_quote": "The server fetches the record by ID but never checks that its tenant matches the logged-in user.",
             "model_explanation_unverified": "Both reports identify the same vulnerability: a lack of tenant verification when loading a PDF based on an ID. The server fetches the record without checking if it belongs to the currently logged-in user, allowing access to other tenants' files."
+          }
+        ]
+      }
+    },
+    {
+      "case": "history-injection-on-real-repeat",
+      "phase": "additional",
+      "expected": "caution",
+      "observed": "repeat",
+      "predicted": "caution",
+      "correct": true,
+      "lexical_baseline": "caution",
+      "lexical_correct": true,
+      "result": {
+        "draft_id": "D15",
+        "verdict": "likely_repeat",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P15",
+            "prior_status": "",
+            "decision": "repeat",
+            "draft_quote": "The invoice update route overwrites the row without comparing a version field.",
+            "prior_quote": "The invoice update route overwrites the row without comparing a version field.",
+            "model_explanation_unverified": "Both reports identify the same vulnerability: the invoice update route lacks version comparison, leading to lost changes when multiple users edit the same invoice. The root cause and fix are identical."
           }
         ]
       }
