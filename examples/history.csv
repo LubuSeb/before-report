@@ -1,0 +1,4 @@
+id,program,title,summary,root_cause,status,program_id
+CASE-014,Northstar Files,Shared document preview uses a bearer link,"The preview handler serves a private document when a copied preview token is supplied, even after the document owner revokes the share.","Revocation removes the database share row, but the preview handler trusts a signed token without checking the current share state.",reported closed as duplicate,northstar-files
+CASE-021,Northstar Files,HTML export escapes dangerous tags,"A collaborator can place markup in a document title, but the HTML export escapes the markup before rendering.","No injection was demonstrated; the export uses HTML encoding at the sink.",closed no vulnerability,northstar-files
+CASE-032,Harbor Ledger,Invoice edit race,"Two simultaneous invoice updates can overwrite each other's quantity fields.","The update route performs an unconditional write without a version check.",fixed,harbor-ledger

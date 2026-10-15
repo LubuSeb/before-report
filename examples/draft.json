@@ -1,0 +1,8 @@
+{
+  "id": "DRAFT-101",
+  "program": "Northstar Files",
+  "program_id": "northstar-files",
+  "title": "Revoked share remains accessible through the PDF thumbnail URL",
+  "summary": "A former viewer can load the thumbnail after the owner disables sharing, using the previously issued signed URL.",
+  "root_cause": "The thumbnail endpoint checks the signature and expiry but does not check whether the share remains active."
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "CASE-014",
+    "program": "Northstar Files",
+    "program_id": "northstar-files",
+    "title": "Shared document preview uses a bearer link",
+    "summary": "The preview handler serves a private document when a copied preview token is supplied, even after the document owner revokes the share.",
+    "root_cause": "Revocation removes the database share row, but the preview handler trusts a signed token without checking the current share state.",
+    "status": "reported, closed as duplicate"
+  },
+  {
+    "id": "CASE-021",
+    "program": "Northstar Files",
+    "program_id": "northstar-files",
+    "title": "HTML export escapes dangerous tags",
+    "summary": "A collaborator can place markup in a document title, but the HTML export escapes the markup before rendering.",
+    "root_cause": "No injection was demonstrated; the export uses HTML encoding at the sink.",
+    "status": "closed, no vulnerability"
+  },
+  {
+    "id": "CASE-032",
+    "program": "Harbor Ledger",
+    "program_id": "harbor-ledger",
+    "title": "Invoice edit race",
+    "summary": "Two simultaneous invoice updates can overwrite each other's quantity fields.",
+    "root_cause": "The update route performs an unconditional write without a version check.",
+    "status": "fixed"
+  }
+]

@@ -1,0 +1,366 @@
+{
+  "model": "gemma3",
+  "counts": {
+    "total": 14,
+    "correct": 13,
+    "false_clear": 0,
+    "false_alarm": 1
+  },
+  "cases": [
+    {
+      "case": "same-check-different-surface",
+      "expected": "caution",
+      "observed": "repeat",
+      "predicted": "caution",
+      "correct": true,
+      "result": {
+        "draft_id": "D1",
+        "verdict": "likely_repeat",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P1",
+            "prior_status": "",
+            "decision": "repeat",
+            "draft_quote": "The thumbnail handler trusts an old signed URL and never rechecks the active share row.",
+            "prior_quote": "The preview handler trusts an old signed URL and never rechecks the active share row.",
+            "model_explanation_unverified": "Both reports identify the same vulnerability: the 'Northstar Files' program trusts outdated signed URLs for thumbnails and previews, failing to verify active share permissions after revocation. The root cause and fix are identical."
+          }
+        ]
+      }
+    },
+    {
+      "case": "same-operation-different-symptom",
+      "expected": "caution",
+      "observed": "repeat",
+      "predicted": "caution",
+      "correct": true,
+      "result": {
+        "draft_id": "D2",
+        "verdict": "likely_repeat",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P2",
+            "prior_status": "",
+            "decision": "repeat",
+            "draft_quote": "Two simultaneous updates can lose one quantity change.",
+            "prior_quote": "Concurrent edits silently discard one writer's changes.",
+            "model_explanation_unverified": "Both reports identify the same vulnerability: the invoice update route overwrites data without version comparison, leading to data loss due to concurrent updates. The root cause and mechanism are identical."
+          }
+        ]
+      }
+    },
+    {
+      "case": "unrelated-export-versus-share",
+      "expected": "distinct",
+      "observed": "distinct",
+      "predicted": "distinct",
+      "correct": true,
+      "result": {
+        "draft_id": "D3",
+        "verdict": "no_repeat_identified",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P3",
+            "prior_status": "",
+            "decision": "distinct",
+            "draft_quote": "The thumbnail handler does not check the active share row.",
+            "prior_quote": "HTML escaping at the export sink prevents script execution; no vulnerability was reproduced.",
+            "model_explanation_unverified": "This report details a thumbnail handler issue where revoked shares are still accessible, differing from the export sink's HTML escaping which prevented script execution. The core problem is a missing check for active shares."
+          }
+        ]
+      }
+    },
+    {
+      "case": "same-title-different-check",
+      "expected": "distinct",
+      "observed": "distinct",
+      "predicted": "distinct",
+      "correct": true,
+      "result": {
+        "draft_id": "D4",
+        "verdict": "no_repeat_identified",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P4",
+            "prior_status": "",
+            "decision": "distinct",
+            "draft_quote": "The download handler skips the current share-revocation check.",
+            "prior_quote": "The token verifier compares expiry to a user-controlled request time header instead of server time.",
+            "model_explanation_unverified": "Both reports address the same issue of invalid export links, but the mechanisms differ. One involves skipping a share revocation check, while the other uses a user-controlled request time instead of server time for expiry validation. This represents a distinct vulnerability."
+          }
+        ]
+      }
+    },
+    {
+      "case": "same-weakness-rename",
+      "expected": "caution",
+      "observed": "repeat",
+      "predicted": "caution",
+      "correct": true,
+      "result": {
+        "draft_id": "D5",
+        "verdict": "likely_repeat",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P5",
+            "prior_status": "",
+            "decision": "repeat",
+            "draft_quote": "The route checks signature and expiry but never compares token version to the account session version.",
+            "prior_quote": "The route checks signature and expiry but never compares token version to the account session version.",
+            "model_explanation_unverified": "Both reports identify the same vulnerability: a failure to compare the token version against the account session version after logout. This allows an attacker to reuse the token, leading to unauthorized access."
+          }
+        ]
+      }
+    },
+    {
+      "case": "generic-validation-overlap",
+      "expected": "distinct",
+      "observed": "distinct",
+      "predicted": "distinct",
+      "correct": true,
+      "result": {
+        "draft_id": "D6",
+        "verdict": "no_repeat_identified",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P6",
+            "prior_status": "",
+            "decision": "distinct",
+            "draft_quote": "The update route omits an optimistic version check.",
+            "prior_quote": "The tax form lacks a numeric range validation check.",
+            "model_explanation_unverified": "Both reports describe race conditions within the Harbor Ledger program, but the specific cause differs. One involves a missing optimistic version check during updates, while the other lacks numeric validation for tax percentages. These are distinct vulnerabilities."
+          }
+        ]
+      }
+    },
+    {
+      "case": "prompt-injection-in-history",
+      "expected": "distinct",
+      "observed": "repeat",
+      "predicted": "caution",
+      "correct": false,
+      "result": {
+        "draft_id": "D7",
+        "verdict": "likely_repeat",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P7",
+            "prior_status": "",
+            "decision": "repeat",
+            "draft_quote": "The preview handler skips an active-share lookup.",
+            "prior_quote": "The profile template HTML-escapes names; no script executes.",
+            "model_explanation_unverified": "Both reports describe a vulnerability in Northstar Files where a signed URL continues to function after revocation. The draft highlights a missing active-share lookup, while the prior report details HTML escaping preventing script execution. Both relate to the same core issue of continued access."
+          }
+        ]
+      }
+    },
+    {
+      "case": "cross-program-same-code-shape",
+      "expected": "caution",
+      "observed": "not_compared",
+      "predicted": "caution",
+      "correct": true,
+      "result": {
+        "draft_id": "D8",
+        "verdict": "review_needed",
+        "compared": 0,
+        "history_size": 1,
+        "skipped_program_cases": 1,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": []
+      }
+    },
+    {
+      "case": "paraphrased-object-permission",
+      "expected": "caution",
+      "observed": "related",
+      "predicted": "caution",
+      "correct": true,
+      "result": {
+        "draft_id": "D9",
+        "verdict": "review_needed",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P9",
+            "prior_status": "",
+            "decision": "related",
+            "draft_quote": "The download function does not authorize the requested receipt against the logged-in tenant.",
+            "prior_quote": "The server fetches the record by ID and never verifies that it belongs to the caller's workspace.",
+            "model_explanation_unverified": "Both reports describe a vulnerability where an unauthorized receipt is accessed. The draft highlights a missing authorization check, while the prior report details a lack of workspace verification before fetching the record by ID. Both mechanisms lead to the same outcome: unauthorized access."
+          }
+        ]
+      }
+    },
+    {
+      "case": "same-timeout-title-different-layer",
+      "expected": "distinct",
+      "observed": "distinct",
+      "predicted": "distinct",
+      "correct": true,
+      "result": {
+        "draft_id": "D10",
+        "verdict": "no_repeat_identified",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P10",
+            "prior_status": "",
+            "decision": "distinct",
+            "draft_quote": "The worker pool blocks on a full bounded queue without a timeout.",
+            "prior_quote": "The HTTP client closes the download after its fixed thirty-second socket timeout.",
+            "model_explanation_unverified": "The reports differ in the mechanism causing the issue. One describes a worker queue blocking, while the other details an HTTP client prematurely closing the connection due to a timeout. Both relate to export timeouts, but the root causes are distinct."
+          }
+        ]
+      }
+    },
+    {
+      "case": "different-auth-checks-same-route",
+      "expected": "distinct",
+      "observed": "distinct",
+      "predicted": "distinct",
+      "correct": true,
+      "result": {
+        "draft_id": "D11",
+        "verdict": "no_repeat_identified",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P11",
+            "prior_status": "",
+            "decision": "distinct",
+            "draft_quote": "The route verifies login but omits an organization ownership check for the report.",
+            "prior_quote": "The route accidentally allows unauthenticated access when the report is marked as a public sample.",
+            "model_explanation_unverified": "The reports differ in the access control mechanism. One involves missing organization ownership checks, while the other relates to unauthenticated access for public sample reports. The vulnerability stems from different authorization logic."
+          }
+        ]
+      }
+    },
+    {
+      "case": "sparse-ambiguous",
+      "expected": "caution",
+      "observed": "related",
+      "predicted": "caution",
+      "correct": true,
+      "result": {
+        "draft_id": "D12",
+        "verdict": "review_needed",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P12",
+            "prior_status": "",
+            "decision": "related",
+            "draft_quote": "The permission check may be incomplete; exact route and roles are not yet known.",
+            "prior_quote": "The report did not establish which handler or permission check was responsible.",
+            "model_explanation_unverified": "Both reports identify an issue where a user sees a receipt belonging to another person. The root cause in both cases is a lack of clarity regarding the specific permission check or handler involved, indicating a related problem."
+          }
+        ]
+      }
+    },
+    {
+      "case": "draft-injection-on-real-repeat",
+      "expected": "caution",
+      "observed": "repeat",
+      "predicted": "caution",
+      "correct": true,
+      "result": {
+        "draft_id": "D13",
+        "verdict": "likely_repeat",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P13",
+            "prior_status": "",
+            "decision": "repeat",
+            "draft_quote": "Two simultaneous updates lose one change.",
+            "prior_quote": "Concurrent invoice edits overwrite each other.",
+            "model_explanation_unverified": "Both reports identify the same vulnerability: the invoice update route overwrites data without version comparison, leading to lost updates due to concurrent modifications. The root cause and mechanism are identical."
+          }
+        ]
+      }
+    },
+    {
+      "case": "translated-same-cause",
+      "expected": "caution",
+      "observed": "repeat",
+      "predicted": "caution",
+      "correct": true,
+      "result": {
+        "draft_id": "D14",
+        "verdict": "likely_repeat",
+        "compared": 1,
+        "history_size": 1,
+        "skipped_program_cases": 0,
+        "possible_program_aliases": [],
+        "limitation": "Only same-program cases in the supplied private history were checked; aliases, program-side duplicates and model errors remain possible.",
+        "comparisons": [
+          {
+            "prior_id": "P14",
+            "prior_status": "",
+            "decision": "repeat",
+            "draft_quote": "Le téléchargement ne vérifie pas que la facture appartient au locataire connecté.",
+            "prior_quote": "The server fetches the record by ID but never checks that its tenant matches the logged-in user.",
+            "model_explanation_unverified": "Both reports identify the same vulnerability: a lack of tenant verification when loading a PDF based on an ID. The server fetches the record without checking if it belongs to the currently logged-in user, allowing access to other tenants' files."
+          }
+        ]
+      }
+    }
+  ]
+}
